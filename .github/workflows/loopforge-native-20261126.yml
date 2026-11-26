@@ -1,0 +1,79 @@
+name: LoopForge focused native validation
+
+on:
+  push:
+    branches: [test/loopforge-native-1051-1054-20261126]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: loopforge-focused-native-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  native:
+    if: >-
+      github.repository == 'Afloat16/LoopForge' &&
+      github.ref == 'refs/heads/test/loopforge-native-1051-1054-20261126' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    name: Native focused PR ${{ matrix.pr }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - pr: '1051'
+            source: d3be5f2c2d39f7f50dd551e91950021aeba44e4b
+          - pr: '1054'
+            source: aea68732a3e5b6ee5dc0f35032d0c83c68ed6dca
+    env:
+      GOFLAGS: -mod=readonly
+      GOTOOLCHAIN: local
+      GOMAXPROCS: '2'
+    steps:
+      - name: Check out isolated validation files
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          path: validation
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Check out immutable candidate source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ matrix.source }}
+          path: source
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify source parents, trees, file hashes and validation-only delta
+        run: >-
+          python3 validation/.github/validation/loopforge-20261126/run.py verify
+          --pr '${{ matrix.pr }}' --source source --validation validation
+          --results 'native-results/${{ matrix.pr }}'
+      - name: Set up pinned Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24.22.3'
+          package-manager-cache: false
+      - name: Set up source-declared Go
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version-file: source/go.mod
+          cache: false
+      - name: Build frontend, run native tests, prove original regressions and restore source
+        run: >-
+          python3 validation/.github/validation/loopforge-20261126/run.py run
+          --pr '${{ matrix.pr }}' --source source --validation validation
+          --results 'native-results/${{ matrix.pr }}'
+      - name: Retain actual phase logs and source evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: loopforge-native-${{ matrix.pr }}-${{ github.run_id }}
+          path: native-results/${{ matrix.pr }}
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,1027 @@
+{
+  "repository": "Afloat16/LoopForge",
+  "validation_branch": "test/loopforge-native-1051-1054-20261126",
+  "validation_parent": "d3be5f2c2d39f7f50dd551e91950021aeba44e4b",
+  "validation_files": [
+    ".github/workflows/loopforge-native-20261126.yml",
+    ".github/validation/loopforge-20261126/run.py",
+    ".github/validation/loopforge-20261126/manifest.json"
+  ],
+  "validation_hashes": {
+    ".github/workflows/loopforge-native-20261126.yml": "327b087078adceabd54763e7abcf6509b237d4cc3559812a96034641e2fa5bc5",
+    ".github/validation/loopforge-20261126/run.py": "a453b5840a099ba2be798e9655063caddc984a1e8e9a5c1d6e44e8180facc9f8"
+  },
+  "node_version": "24.22.3",
+  "go_version": "1.26.11",
+  "sources": {
+    "1051": {
+      "source": "d3be5f2c2d39f7f50dd551e91950021aeba44e4b",
+      "tree": "128d1daa25708df7bc1d9f99e9645ad72c1e4a24",
+      "old_head": "aa067e82025614226bde6b1f76499ac4a788fe07",
+      "base": "c039a78aab774b9802b54d1753e969f17f2b74da",
+      "base_tree": "2b8849c0e4b4593acf5a06a86b225fda01356c54",
+      "positive_phases": [
+        {
+          "name": "focused-go-tests",
+          "command": [
+            "go",
+            "test",
+            "-json",
+            "-p=2",
+            "./internal/domain",
+            "./internal/runtime",
+            "./internal/httpapi",
+            "-run",
+            "TestNormalizeGeminiBaseURL|TestAntigravity|TestDiscoverGeminiModels|TestAgentCLI",
+            "-count=1",
+            "-timeout=180s"
+          ],
+          "required_passes": [
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizeGeminiBaseURL"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAgentCLIRuntimeAuthModeIsPersonal"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityStreamAgentResponseAccumulatesUntilDone"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityStreamToolStepMapsMCPAndResults"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityStreamFailureFallsBackToStepError"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAgentCLITranslatorDeepSeekFlushesHeldTruncatedText"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAgentCLIPiAPI"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityGeminiBaseDoesNotDuplicateAPIVersion"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityRejectsGeminiOperationURL"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAgentCLIConversationLongPrompt"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAgentCLIConversationShortPromptUsesArgv"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAgentCLICommandChatRestrictions"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAgentCLICommandAgyEffortSuffix"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAgentCLITranslatorPiNestedTools"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAgentCLITranslatorDeepSeekReplacesTruncatedTextWithFinal"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAgentCLIUserCredentials"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityRefreshKeepsTrustedMetadata"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityIdentityFailureKeepsHost"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityRunnerLoginLifecycle"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityKeyringLoginRefresh"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityFileLoginIgnoresMetadataOnlyUpdate"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityLoginIdentityMigration"
+            },
+            {
+              "package": "agentflow/internal/runtime",
+              "test": "TestAntigravityAccountModelsSaveRefreshedLogin"
+            },
+            {
+              "package": "agentflow/internal/httpapi",
+              "test": "TestAntigravityRunnerLoginRequiresMachineOwner"
+            },
+            {
+              "package": "agentflow/internal/httpapi",
+              "test": "TestAntigravityRuntimeRegistrationKeepsAccountPreference"
+            },
+            {
+              "package": "agentflow/internal/httpapi",
+              "test": "TestDiscoverGeminiModelsKeepsGenerativeIDs"
+            },
+            {
+              "package": "agentflow/internal/httpapi",
+              "test": "TestAntigravityCatalogFollowsCredentialSource"
+            },
+            {
+              "package": "agentflow/internal/httpapi",
+              "test": "TestAntigravityRunnerModelProbeGroupsAdvertisedEfforts"
+            },
+            {
+              "package": "agentflow/internal/httpapi",
+              "test": "TestAntigravityGenerationUsesLiveRunnerCatalog"
+            }
+          ],
+          "expected_skips": [
+            "TestAgentCLINodeInvocation"
+          ],
+          "skip_messages": [
+            "set AGENTFLOW_TEST_AGENT_CLIS=1 to exercise installed agent CLIs"
+          ]
+        },
+        {
+          "name": "full-domain-tests",
+          "command": [
+            "go",
+            "test",
+            "-json",
+            "-p=2",
+            "./internal/domain",
+            "-count=1",
+            "-timeout=180s"
+          ],
+          "required_passes": [
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestIsAgentCLIKindMatchesCaseInsensitivelyAfterTrim"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateAgentEffortChecksPublishedLevels"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyticsFilterMatchesProject"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestApprovalWaitReason"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestApprovalWaitReasonFallbacks"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestApprovalNeighborsIgnoresEmptyEdgeEnds"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateSandboxAssets"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunnerSandboxNamesTheRecipeAfterTheSandbox"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunnerSandboxLeavesCatalogDescriptionBehind"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateMCPPathEntries"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeAssistantDiagnosticsSkipsNilAndLegacyReports"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeAssistantDiagnosticsFailureClassification"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeAssistantDiagnosticsFailedWithoutFailureDetail"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeAssistantDiagnosticsTerminationOutcomes"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeAssistantDiagnosticsStatusWithoutTermination"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeAssistantDiagnosticsProcessSignalsAndIdentifiers"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeAssistantDiagnosticsIdempotencyAndBoundaries"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeAssistantDiagnosticsUserCancelWithEarlyError"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeDiagnosticToolsCollectsEvidenceAndIDs"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeDiagnosticToolsKeepsRunningToolWhileGenerationRuns"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyzeDiagnosticToolsWithoutToolsAddsNothing"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAssistantSessionExecutionDefaultsToCloud"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAssistantSessionExecutionLocked"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestCatalogVisibility"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestShouldResumeClarificationOnlyForCrashedAnalysis"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestStripURLCredentials"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAggregateDeliveryMRState"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestIssueDeliveryMRsKeepLegacyFields"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestResolveRunDeliveryMRsPerRepository"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestResolveRunDeliveryMRsAcceptsHTTPArtifactURL"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestResolveRunDeliveryMRsWithoutGongfengRepository"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestResolveRunDeliveryMRsLegacyMultiRepository"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAssetValidationBranches"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestConflictBlockExtractionBranches"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestMetricAndEffortRemainingBranches"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestMCPValidationBranches"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPreviewContractAndSessionBranches"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunEvalRunnerAndSpaceBranches"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestScheduleLaneAndVerificationBranches"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSOPBindingInheritanceBranches"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizeGeminiBaseURL"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestIssueIdentityBlockTAPD"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestIssueIdentityBlockLocal"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestEffectiveSOPBindingsFallsBackToWorkflowID"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizeSOPBindingsKeepsOrderAndUniqueWorkflows"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSOPBindingForWorkflow"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestResolveSOPBindingsFollowsBoundWorkflow"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPlaybooksWrapsLegacyBindingsAndPicksNamed"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPlatformRequirementTAPDIDIsMetricsOnly"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestGongfengClosed"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestIssueCloseSource"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestMergedDeliveryBlocksUntilReopened"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateMCPServer"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateMCPServerScope"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestParseMCPImportShapes"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPublicMCPServerMasksCredentialEnvironmentOnly"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateMCPServerErrorOrder"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestClassifyMRDeliveryState"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestFinalizeAnalyticsDeliveryRequiresMainline"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestEffectiveAnalyticsMRStatePromotesIntegrated"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestKeepMainlineDeliveryLabel"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestBranchListed"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestWorkLandedWithPromote"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSummarizeDeliveriesSplitsMainlineAndBaseline"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSummarizeDeliveriesCountsMRsSeparatelyFromIssues"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestGongfengMRKey"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyticsMRKey"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestParseDeliveryMRURL"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestExternalMRProject"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRecordDeliveryMRsDedupsAndKeepsBestState"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRecordDeliveryMRsSkipsMRsWithoutIdentity"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestCountDeliveryMRStates"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestParseGongfengMR"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestParseGongfengMRAcceptsHTTPAndCanonicalizes"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSameGongfengMRIgnoresURLForm"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestParseGongfengMRsKeepsOrderAndDedups"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestMRArtifactPriorityIgnoresPatches"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestIsGitHubPRURL"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNotificationTemplateDefaults"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRenderNotificationUsesScheduleDefaultTemplate"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestFlexibleNotificationTemplates"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNotificationAIWholeBodyAndFallback"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNotificationValidationAndUTF8"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestWaitingNotificationPolicyValidation"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateNotificationTemplate"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateNotificationEvents"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateNotificationBindingCheckOrder"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSOPReportIncludesAllNodeTypesAndAIContributions"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestWorkflowReportLegacyBindingPrecedence"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizePublicURL"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizePublicURLWarnsAboutLoopback"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestUsablePublicURL"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizePublicURLLengthLimit"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAttachPreviewBuildUsesSelectedExecutor"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAttachPreviewBuildIsIdempotentAndStrippedFromCatalog"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPreviewContractClampsRetentionTo30Days"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPreviewContractOverridesLegacySyntheticExecutor"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizePreviewBackendURL"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPreviewDetectSkipDir"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestFrontendFileEvidence"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestDetectFrontendProject"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRepositoryURLRequiresAHostAndSupportsManagedGit"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestIsSafeGongfengProjectID"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestParseGongfengRepoURL"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAssignRepositoryDirsUsesFirstLevelSubdirectory"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPublicRepositoryAndPullRequestIdentity"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateResourceID"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunHumanEditable"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunHasActiveNode"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunTimingEndFallbacks"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestMergeExecutionIntervalsClipsAndUnions"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestMergeExecutionIntervalsKnownZero"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNodeRunJSONOmitsUnsetStageTimes"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunTimingCountsEveryAttemptAndSkipsFailedWait"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunTimingExcludesHumanGateAndPause"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunTimingUnionsParallelNodesAndClosesOnPark"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunTimingRunningNodeAccruesUntilNow"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunTimingFallsBackToNodeRows"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunTimingWallClockStopsOnlyForTerminalRuns"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunnerDefaultSelectionBlocker"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestFrozenNativeSandboxCarriesLegacyEnvironmentVariables"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPublicRunnerTaskScrubsMultiRepositoryTokens"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPublicRunnerTaskStripsCloneURLCredentials"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAgentCLIRuntimeAuthModeIsPersonal"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunnerSupportsWorkBranchSync"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunnerSupportsConversationCLIWithInterruptibleSnapshots"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunnerSupportsConversationSOPWorkspaceWithNestedCheckouts"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunnerSupportsCreateNewWorkBranch"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunnerSupportsExistingWorkBranch"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPublicRunnerRepositoryScrubsCredentialsOnly"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestWorkspaceOwnerPreparationRequiresNewRunnerVersion"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestWorkflowUnmarshalLiftsConsistentLegacyNodeSandbox"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestWorkflowUnmarshalRejectsConflictingLegacyNodeSandboxes"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRunUnmarshalLiftsConsistentLegacyNodeSandboxID"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSandboxEnvironmentIsSerializedButRemovedExecutorEnvIsNot"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestScheduleUsagePricesRoutedModels"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestScheduleUsageKeepsCacheOnlyReports"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestScheduleUsagePrefersReportedAmount"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSharedScheduleParameters"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSharedScheduleVersionValidatePromptLength"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestInferSOPLane"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestIsRequirementWorkItem"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizeIntegrateBranch"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizeScheduleIssueStatuses"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestScheduleJobTriggerIssueStatuses"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestScheduleJobMatchesIssueStatusNormalizesInput"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizeScheduleSource"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestTerminalRunStatus"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestAnalyticsTokenPricing"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestNormalizeCodeBuddyInternetEnvironment"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateVerificationGateRequiresScopeForCommands"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSplitVerificationGatesSeparatesGitFromDeliverables"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSplitVerificationGatesLeavesExplicitScopeAlone"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestCommandNeedsRepository"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestPartitionGateCommandsSkipsBlankAndRewritesRepoCommands"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestRepositoryGitGateReservesUniqueIDAndFallsBack"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestDefaultWorkBranch"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestSafeGitRefSegment"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestValidateWorkflowMetricStages"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestWorkflowRebuildReplayFlag"
+            },
+            {
+              "package": "agentflow/internal/domain",
+              "test": "TestWorkflowRebuildFlagJSONCompatibility"
+            }
+          ],
+          "expected_skips": []
+        }
+      ],
+      "negative": {
+        "command": [
+          "go",
+          "test",
+          "-json",
+          "-p=2",
+          "./internal/runtime",
+          "-run",
+          "^(TestAntigravityGeminiBaseDoesNotDuplicateAPIVersion|TestAntigravityRejectsGeminiOperationURL)$",
+          "-count=1",
+          "-timeout=180s"
+        ],
+        "package": "agentflow/internal/runtime",
+        "failed_tests": [
+          "TestAntigravityGeminiBaseDoesNotDuplicateAPIVersion",
+          "TestAntigravityRejectsGeminiOperationURL"
+        ],
+        "assertion_fragments": [
+          "endpoint \"https://gateway.example.test/v1beta\": env=",
+          "accepted an operation endpoint as the Gemini service root"
+        ]
+      },
+      "negative_boundary": "Restore runtime/agent_cli.go and httpapi/cli_models_probe.go byte-for-byte from exact main c039a78a. Original two runtime regression tests stay unchanged. Candidate domain/gemini_url.go remains compiled but is unused by the restored main callers; this is not a full main checkout.",
+      "negative_main_hashes": {
+        "internal/runtime/agent_cli.go": "b643143f32d114acdcf5b9c6487b2fc5d8acbed7941d047ac090b7ffd07153ab",
+        "internal/httpapi/cli_models_probe.go": "e2402391e8f754d16ddec635b7e4df9952bbcf04c09eeb5be767f2326d6b17b2"
+      },
+      "source_hashes": {
+        "internal/domain/gemini_url.go": "55efd2634ae152f0ade481443e7bd9af4ee328f4808f9e07aa10f86a9908d2a1",
+        "internal/domain/gemini_url_test.go": "4c662b15486fb382c85ffd86492ff3fcefe761ae99c52f506d782842456899a6",
+        "internal/httpapi/cli_models_probe.go": "b5a88ae3f371f9546a8a3947bf540548f0da6c0f12b6383210ffc6babc7e4104",
+        "internal/runtime/agent_cli.go": "e1ed4e8faa4c89b99e3b97506d43f624bab5be78b4b67e4347e050d95b45fc35",
+        "internal/runtime/agent_cli_gemini_base_test.go": "166e3de83217cf858b830f9495911b7d267f340a31f2bb4e52c4280027924c7b",
+        "go.mod": "12b48d038dcabd778e0dda44484e8de84e27abebf63d0717f5e36d282f98efc9",
+        "go.sum": "b5b9adfa3245ec095176c68a862524feeed61f30b8d31b9b3ee0715f98fd7255",
+        "scripts/build-chatbot.sh": "ac46f5b92977e47167e82a4682055040c99961da598ef82210b78a9aec84fbec",
+        "chatbot/package.json": "dbba5933a677491233098f74e6610e015912e382a9faa4b9b0c75d18d2e1c10f",
+        "chatbot/package-lock.json": "3dcf93fb5f0e74065f19b03316b0960bb33e654b577adea49b2b6c8a823d65e9",
+        "internal/domain/runner_test.go": "b02fad2f719035e7edb2efc2f2fb4db938fbdc194e1862e1c84c4583799eb61c",
+        "internal/runtime/agent_cli_antigravity_stream_test.go": "3031fb822eda63086ce392387d624f83ac2fe2eda94734720250f8ac7d788a7f",
+        "internal/runtime/agent_cli_deepseek_stream_test.go": "42cbf967f893028d6ad093a021d97adff3b4db1587b89d463f2caf7c90b56796",
+        "internal/runtime/agent_cli_deepseek_test.go": "2777609c7e2748651cd2d389ab390a93e3befc55fe7acb72ad151e537969efba",
+        "internal/runtime/agent_cli_integration_test.go": "429ebbd3a72fb9cae34c209591e28dc14e03c2d300b2fc5f2abe54efd69a99e5",
+        "internal/runtime/agent_cli_prompt_test.go": "e24fcd50ac153eef10d3f4549bd017e71e5e6457c928f59b0bbd23e1f427c886",
+        "internal/runtime/agent_cli_test.go": "1aa5c6af1e7750acc4e3e62d8c47cc1b7889db4227ec40127ae9215868169874",
+        "internal/runtime/runner_login_antigravity_test.go": "b9152f6bc0ffd70fb6f4a65988a6e7df00fb4b28a400e97e45fb64dc8244c984",
+        "internal/httpapi/antigravity_runner_login_test.go": "b9d02eccc9ec6b7b987538ed79ffbceba78eb7ff752152f5ef367cc4633bfa4f",
+        "internal/httpapi/cli_models_probe_test.go": "835e18946d77615f726ec1356ad045ae4d471957aff42653c4407e82c309a7bc",
+        "internal/httpapi/runner_models_test.go": "c0fbd60ebc301f27d0ee4d91c007f1e90f4ad2e9b18142dd05d3f8e2a19583d2",
+        "internal/domain/agent_kind_effort_test.go": "e3487bc605b64581aa7259db7bac0e89bc26c34d52cc58f56ad35ea6905a60c0",
+        "internal/domain/analytics_filter_test.go": "034952b7ed3e9ff643ed06a0cc7a277cafcee8e8c0be7ed216168de3a65262b7",
+        "internal/domain/approval_reason_test.go": "c3b6bfede138a0d4dbe1e0feafc387360f02d3bdfe511d056ae532b75c93db2d",
+        "internal/domain/assets_test.go": "d492e77d71a1759a83cf4c88fdfb96c421bac82a64f35d7eaac37cb6bf79cef4",
+        "internal/domain/assistant_diagnostic_analysis_cases_test.go": "5888591351cdc8ee664039af022932bf0dbaea9d8465cd357390082c46634d42",
+        "internal/domain/assistant_diagnostic_analysis_test.go": "af351ed5af0f37a203fb1e8516f181392b0334c19bbec92953251652d39c6c3d",
+        "internal/domain/assistant_diagnostic_tools_test.go": "6316e255b59caa3a99551aec1197d0e3a0531ee267063c4966f15cefa65eed0a",
+        "internal/domain/assistant_execution_target_test.go": "31528dafee1dcc3c5328ab34b69858dd14d80d3875eba9b632fe3b79522fc0da",
+        "internal/domain/catalog_test.go": "11dc25dcee7054c6688197e7e25951e660595a097042826763e9e36bdfe14eb2",
+        "internal/domain/clarification_test.go": "0cc7fa095683de18998a8590e026193482f4c5f10e9d25f4b6dd556d6077c4d1",
+        "internal/domain/clone_url_test.go": "8e1bdf5fdc6f612fc4a366b29a7844b7e5b920a55bba3580142a12ccadb3f94c",
+        "internal/domain/delivery_mr_test.go": "bad835e41639f5c1255da77fa29816187d711131eadcd4d85838ba17e4ad4a18",
+        "internal/domain/domain_cases_test.go": "c65ea5bd58a4b45f9466c19184e06acbbc6f3c7eedb6997a3c029574236f3bde",
+        "internal/domain/issue_identity_test.go": "0e409933cde0c54f825532918eb074d5a7f9afb61e73d50df1d14365238faa87",
+        "internal/domain/issue_sop_test.go": "3f8e7fb806e9c0064b240f6dca6d71fc264bf1b7d2abedbc845beccd2564da03",
+        "internal/domain/issue_tapd_metrics_test.go": "c3ad8bb6994ffe623ed474245b3fa3a3248f0caaaafb0d853ffbd3468cafcbb1",
+        "internal/domain/issue_test.go": "af45a838e31d7f6a55302af59c33a0c7e7ca17ea4b1fa020f4243445a586b21e",
+        "internal/domain/mcp_test.go": "639fce5ad9897733d132db09f8f56914dc6cd8c5f2240f82c8823b8862c8f011",
+        "internal/domain/mcp_validate_test.go": "51f80258fd3b45c1d94524663e08e3759e2e7a0030a55147c51fd422499b9f0a",
+        "internal/domain/mr_classify_test.go": "bbaa43a8aec90637d0a281387ff348d0d8e1b5f0f7c749cfac612c480e1e0e14",
+        "internal/domain/mr_key_test.go": "fdb133182744f5d930a8329590c757e10d34d14978d5efad2f97cf3452532d8d",
+        "internal/domain/mr_summary_mrs_test.go": "6d0c8eb5ddfc877e4a16ee0f49096148afdfa34c67f4c12391269436e498f371",
+        "internal/domain/mr_test.go": "3a02a1bd0024cd3879b16fc7fa104637f5a8f58ef01e41356503770c9c21751f",
+        "internal/domain/notification_default_template_test.go": "fcf15fd488206850fed62d2bc2e993129636b6b8e1ef7dbf8db9fda3085d0c52",
+        "internal/domain/notification_template_test.go": "dd081dc4a8951bac99af1d10c4d5ee459c1bd2acc25e577fd8b188fde58b41f2",
+        "internal/domain/notification_template_validate_test.go": "81f5ce02f2b55fa1da37c860453eb7683fe789355199211802c574f321d27dfd",
+        "internal/domain/notification_workflow_test.go": "f677cf759886385c9b9faeb948711c28358a875e616ef2315a9a7de9e021fb19",
+        "internal/domain/platform_settings_test.go": "debd7138a0c23d855192fb752259be84cf63742bdbfe6e0664442d827196b5a0",
+        "internal/domain/preview_build_test.go": "6d0844dc645d965253a9438e9b8638e030314dc1082e89ac0b089b9751806e01",
+        "internal/domain/preview_detect_helpers_test.go": "56938dc4a01fd19218ba12c80de1c6b2174158609840b54801d04c6ee9ad639a",
+        "internal/domain/preview_detect_test.go": "0523ea4194facd9784ce86030391b0bd6a8e21a76d7d39b48e4d4a280eb408d4",
+        "internal/domain/project_test.go": "0e20ff5ec46205bbce8a2952a8ffe5ce7cab5073a94715c02a0b791ee5e43e20",
+        "internal/domain/public_repository_test.go": "4f6952f0ad7296bb5c98870208685e88b5ced0fc27e07d2bba92e43f7fb4950c",
+        "internal/domain/resource_id_test.go": "6cd3774ad2d513e701ffcbf14b266fff8ef69b8d3802a7cc9ba81233d386fff2",
+        "internal/domain/run_test.go": "b72e76cc3f1b08df1990b239ed35aeb6837d22e0e69c6def54db7ce2b9108745",
+        "internal/domain/run_timing_split_test.go": "ca6509767e0437af17d7a0625b40e5677deaba13da0fc3540750914f936de0be",
+        "internal/domain/run_timing_test.go": "b6195c46d5c2d8878ac8d5983492dd6283c4a2b2c7f5a4e627dd603bff52bffd",
+        "internal/domain/runner_default_selection_test.go": "4e5cc0fc52be43b0670b32d3ca85b4d9a53687764f265fd700301a62740591bd",
+        "internal/domain/runner_workspace_owner_test.go": "98a02193235140519929fd14d53d816b41018579b1c723a82a9b61720b04b3d3",
+        "internal/domain/sandbox_migration_test.go": "1fb00ea03ce81c2a6fd66e58fc46eadce6de7d0dc840783e8eedc3a45b12a23a",
+        "internal/domain/schedule_execution_usage_test.go": "cd1f749a5f62cf2872697e8d268549d313a373400c5997f2f84a1dd308789018",
+        "internal/domain/shared_schedule_test.go": "7df3d3c211c6b2da40f5977668ffbb05683b88e7e467cad4c4762161bba4f5ad",
+        "internal/domain/sop_lane_test.go": "26fb397ac902a9ec4c6d112adc2a63da56cf93b9788ed334956feb4524ec5335",
+        "internal/domain/sync_test.go": "1831f264c45bc081ba5817adea23e0f256d7897bfad7ee73442d753110cd256b",
+        "internal/domain/terminal_run_status_test.go": "1592e9d44cf8748eaf807ae52ac035292c4191fce27b407964c821870f2ac1b4",
+        "internal/domain/token_pricing_test.go": "f34cb0f3c30b874d3f5ed5f3adb8a1f3530b3a36324835585865395e33cb7e4f",
+        "internal/domain/user_test.go": "66bff8edbfdfb122588f088c7d8899ad2961fe38d4e2a69fb9a102c417deb27d",
+        "internal/domain/verification_test.go": "dd5ca1a49ad7764c52b28cc51d5235769f5251b2c9b58cf97d3996a8d151fc5f",
+        "internal/domain/work_branch_test.go": "a915c68c411682c87619d4f02d13e5fc0642698ab8892e67c8770b2d812a8b69",
+        "internal/domain/workflow_metric_stage_test.go": "a0aa996c77c03114ce004bc9c2ba3ea5df699c232c6e2a5da6c67012b32b75ca",
+        "internal/domain/workspace_preparation_test.go": "3da24bdbcbdfae240e938764d79a1a60da152334542eb6101866d212de15cfd8"
+      }
+    },
+    "1054": {
+      "source": "aea68732a3e5b6ee5dc0f35032d0c83c68ed6dca",
+      "tree": "31e273d0452a9d9ade47bea0db91de793af8f715",
+      "old_head": "c0c1f73983873479f457c05cc3db7ae0b15fc572",
+      "base": "c039a78aab774b9802b54d1753e969f17f2b74da",
+      "base_tree": "2b8849c0e4b4593acf5a06a86b225fda01356c54",
+      "positive_phases": [
+        {
+          "name": "focused-go-tests",
+          "command": [
+            "go",
+            "test",
+            "-json",
+            "-p=2",
+            "./internal/runner",
+            "-run",
+            "TestClient|TestClaimSSHKnownHostsFitsAfterLegacyPayload|TestClaimDecodesSkillFilesAtUploadLimits",
+            "-count=1",
+            "-timeout=180s"
+          ],
+          "required_passes": [
+            {
+              "package": "agentflow/internal/runner",
+              "test": "TestClientRejectsIncompleteResponseBodies"
+            },
+            {
+              "package": "agentflow/internal/runner",
+              "test": "TestClientRejectsOversizedAndNonSuccessResponses"
+            },
+            {
+              "package": "agentflow/internal/runner",
+              "test": "TestClientEndpointsAndErrors"
+            },
+            {
+              "package": "agentflow/internal/runner",
+              "test": "TestClientPreviewUpload"
+            },
+            {
+              "package": "agentflow/internal/runner",
+              "test": "TestClaimSSHKnownHostsFitsAfterLegacyPayload"
+            },
+            {
+              "package": "agentflow/internal/runner",
+              "test": "TestClaimDecodesSkillFilesAtUploadLimits"
+            },
+            {
+              "package": "agentflow/internal/runner",
+              "test": "TestClientOpenControlWebSocketBranches"
+            }
+          ],
+          "expected_skips": []
+        }
+      ],
+      "negative": {
+        "command": [
+          "go",
+          "test",
+          "-json",
+          "-p=2",
+          "./internal/runner",
+          "-run",
+          "^TestClientRejects",
+          "-count=1",
+          "-timeout=180s"
+        ],
+        "package": "agentflow/internal/runner",
+        "failed_tests": [
+          "TestClientRejectsIncompleteResponseBodies",
+          "TestClientRejectsIncompleteResponseBodies/register",
+          "TestClientRejectsIncompleteResponseBodies/heartbeat",
+          "TestClientRejectsIncompleteResponseBodies/complete",
+          "TestClientRejectsIncompleteResponseBodies/preview",
+          "TestClientRejectsOversizedAndNonSuccessResponses",
+          "TestClientRejectsOversizedAndNonSuccessResponses/oversized",
+          "TestClientRejectsOversizedAndNonSuccessResponses/unresolved_redirect"
+        ],
+        "assertion_fragments": [
+          "incomplete register response:",
+          "incomplete heartbeat response:",
+          "incomplete complete response:",
+          "incomplete preview response:",
+          "reported task completion success for invalid control-plane response"
+        ]
+      },
+      "negative_boundary": "Restore client.go byte-for-byte from exact main c039a78a, preserving main expanded claim-body limit and typed errors. Original response-read tests stay unchanged. All six leaves and both parents must execute and fail their behavior assertions.",
+      "negative_main_hashes": {
+        "internal/runner/client.go": "b80558ec81537365aa0ced1f5ac05277b82c1ac08fed2d8b10edcc37c004d9f7"
+      },
+      "source_hashes": {
+        "internal/runner/client.go": "1400d5917e3dff24892ae5d2f2faa90d8bde26b772d6af137c24e18197806d54",
+        "internal/runner/client_response_read_test.go": "634f8fda09839357ca078c88c4389630858315946259ed28f7737bfc19c553b5",
+        "go.mod": "12b48d038dcabd778e0dda44484e8de84e27abebf63d0717f5e36d282f98efc9",
+        "go.sum": "b5b9adfa3245ec095176c68a862524feeed61f30b8d31b9b3ee0715f98fd7255",
+        "scripts/build-chatbot.sh": "ac46f5b92977e47167e82a4682055040c99961da598ef82210b78a9aec84fbec",
+        "chatbot/package.json": "dbba5933a677491233098f74e6610e015912e382a9faa4b9b0c75d18d2e1c10f",
+        "chatbot/package-lock.json": "3dcf93fb5f0e74065f19b03316b0960bb33e654b577adea49b2b6c8a823d65e9",
+        "internal/runner/core_cases_test.go": "9eb01b5e12beae9a6872cebb9517d84f3845691455611188d4e26f12d53dd618",
+        "internal/runner/protocol_cases_test.go": "e5d897b414c68deb1316e71ffcda189a5bd9205ade4f26554b2a8702f03aa0ff"
+      }
+    }
+  }
+}
